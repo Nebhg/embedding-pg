@@ -11,11 +11,20 @@ export type PGChunk = {
     essay_title: string;
     essay_url: string;
     essay_date: string;
+    content: string;
     content_tokens: number;
-    embeddings: number[];
+    embedding: number[];
 }
 
-export type PGJSSON = {
+export type PGJSON = {
     tokens: number;
     essays: PGEssay[];
 }
+
+export type Recipe = {
+    recipeName: string;
+    cookingTime: string;
+    servings: string;
+    ingredients: string[];
+    instructions: string[];
+  };
