@@ -1,30 +1,31 @@
-export type PGEssay = {
+export type Recipe = {
     title: string;
-    url: string;
-    date: string;
-    content: string;
-    tokens: number;
-    chunks: PGChunk[];
-}
-
-export type PGChunk = {
-    essay_title: string;
-    essay_url: string;
-    essay_date: string;
+    total_time: number;
+    yields: string;
+    ingredients: string[];
+    nutrition: {
+      calories: string;
+      carbohydrateContent: string;
+      cholesterolContent: string;
+      fiberContent: string;
+      proteinContent: string;
+      saturatedFatContent: string;
+      sodiumContent: string;
+      sugarContent: string;
+      fatContent: string;
+      unsaturatedFatContent: string;
+    };
+    instructions_list: string[];
+    image: string;
+  };
+  
+  export type Chunk = {
+    recipe_title: string;
     content: string;
     content_tokens: number;
-    embedding: number[];
-}
-
-export type PGJSON = {
-    tokens: number;
-    essays: PGEssay[];
-}
-
-export type Recipe = {
-    recipeName: string;
-    cookingTime: string;
-    servings: string;
-    ingredients: string[];
-    instructions: string[];
+    embedding: any[];
+  };
+  
+  export type ChunkedRecipe = Recipe & {
+    chunks: Chunk[];
   };

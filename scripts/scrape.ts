@@ -1,37 +1,6 @@
 import { encode } from "gpt-3-encoder";
 import fs from "fs";
-
-type Recipe = {
-  title: string;
-  total_time: number;
-  yields: string;
-  ingredients: string[];
-  nutrition: {
-    calories: string;
-    carbohydrateContent: string;
-    cholesterolContent: string;
-    fiberContent: string;
-    proteinContent: string;
-    saturatedFatContent: string;
-    sodiumContent: string;
-    sugarContent: string;
-    fatContent: string;
-    unsaturatedFatContent: string;
-  };
-  instructions_list: string[];
-  image: string;
-};
-
-type Chunk = {
-  recipe_title: string;
-  content: string;
-  content_tokens: number;
-  embedding: any[];
-};
-
-type ChunkedRecipe = Recipe & {
-  chunks: Chunk[];
-};
+import { Recipe, ChunkedRecipe, Chunk } from "@/types";
 
 const getChunks = async (recipe: Recipe): Promise<ChunkedRecipe> => {
   const { title, total_time, yields, ingredients, nutrition, instructions_list, image } = recipe;
