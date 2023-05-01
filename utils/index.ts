@@ -19,15 +19,15 @@ export const OpenAIStream = async (prompt: string) => {
             messages: [
             {
                 role: 'system',
-                content: 'You are a helpful assisstant that answers queries about recipes. The following is a conversation with a user about how to make a recipe.'
+                content: 'You are a helpful assisstant that answers queries using embedded recipe data collected from allrecipes.com. Use the text provided to suggest a unique recipe and instructions on how to cook the dish. Avoid copying word-for-word'
             },
             {
                 role: 'user',
                 content: prompt
             }
         ],
-        max_tokens: 150,
-        temperature: 0.0,
+        max_tokens: 300,
+        temperature: 0.1,
         stream: true
     })
     });

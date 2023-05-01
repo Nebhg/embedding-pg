@@ -26,8 +26,8 @@ const handler = async (req: Request): Promise<Response>  => {
 
     const {data: chunks, error} = await supabaseAdmin.rpc("recipe_gen_search", {
       query_embedding: embedding,
-      similarity_threshold: 0.5,
-      match_count: 5
+      similarity_threshold: 0.4,
+      match_count: 2
 
     });
 

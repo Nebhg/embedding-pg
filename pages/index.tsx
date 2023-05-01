@@ -35,7 +35,7 @@ export default function Home() {
     console.log(results);
 
     const prompt = endent`
-    Use the following passages to answer the query: "${query}"
+    Based on the embedded recipe data create a unique dish based on the ingredients listed in the user query. Uses sensible combinations of flavours: "${query}"
     
     ${results.map((chunk: any) => chunk.content).join("\n\n")}`;
     console.log(prompt);
@@ -91,24 +91,27 @@ export default function Home() {
           href='/favicon.ico'
         />
       </Head>
-      <div className='flex flex-col w-[350px]'>
-        <input
-          className='border border-gray-300 rounded-md p-2'
-          type='text'
-          placeholder='What do you want to cook?'
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button
-          className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-          onClick={handleAnswer}
-        >
-          Generate
-        </button>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="flex flex-col w-[700px]">
+          <input
+            className="border border-gray-300 rounded-md p-2 mb-4"
+            type="text"
+            placeholder="What do you want to cook?"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={handleAnswer}
+          >
+            Generate
+          </button>
 
-        <div className='mt-4'>{loading? <div>Loading...</div> : 
-        <Answer text={answer} />}</div>
-
+          <div className="mt-4">
+            {loading ? <div>Loading...</div> : 
+            <Answer text={answer} />}
+          </div>
+        </div>
       </div>
     </>
   )

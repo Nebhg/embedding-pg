@@ -12,3 +12,8 @@
         opacity: 1;
     }
 }
+
+.listItem::before {
+    content: "•";
+    margin-right: 8px;
+  }
