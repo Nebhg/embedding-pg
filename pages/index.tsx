@@ -35,7 +35,7 @@ export default function Home() {
     console.log(results);
 
     const prompt = endent`
-    Based on the embedded recipe data create a unique dish based on the ingredients listed in the user query. Uses sensible combinations of flavours: "${query}"
+    Based on the embedded recipe data create a unique dish based on any food ingredients listed in the user query. Use sensible combinations of flavours. Format your response to include the total time it takes to cook, step by step instructions and nutritional information about the meal: "${query}"
     
     ${results.map((chunk: any) => chunk.content).join("\n\n")}`;
     console.log(prompt);
