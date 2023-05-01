@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { Chunk, ChunkedRecipe } from '../types'
 import endent from 'endent'
+import { Answer } from '@/components/Answer'
 
 
 export default function Home() {
@@ -106,7 +107,7 @@ export default function Home() {
         </button>
 
         <div className='mt-4'>{loading? <div>Loading...</div> : 
-        <div>{answer}</div>}</div>
+        <Answer text={answer} />}</div>
 
       </div>
     </>
