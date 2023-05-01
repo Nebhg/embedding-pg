@@ -42,32 +42,30 @@ export const OpenAIStream = async (prompt: string) => {
     const stream = new ReadableStream({
         async start(controller) {
             const onParse = (event: ParsedEvent | ReconnectInterval) => {
-                if (event.type === 'event') {
-                    const data = event.data;
-            
-                    if (data === '|DONE|') {
+                if(event.type === 'event') 
+                {
+                    const data = event.data
+                    
+                    if(data === '|DONE|'){
                         controller.close();
                         return;
                     }
-            
-                    try {
+
+                    try{
                         const json = JSON.parse(data);
-                        const text = json.choices[0].text;
+                        const text = json.choices[0].delta.content;
                         const queue = encoder.encode(text);
                         controller.enqueue(queue);
-                    } catch (e) {
+                    } catch(e) {
                         controller.error(e);
                     }
-                }
+                }  
             };
-            // Helper function to check if a string is valid JSON
-            function isJsonString(str: string) {
-                try {
-                    JSON.parse(str);
-                } catch (e) {
-                    return false;
-                }
-                return true;
+            
+            const parser = createParser(onParse);
+
+            for await (const chunk of response.body as any) {
+                parser.feed(decoder.decode(chunk));
             }
         }
 
