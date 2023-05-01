@@ -37,6 +37,7 @@ const handler = async (req: Request): Promise<Response>  => {
     }
 
     return new Response(JSON.stringify(chunks), { status: 200});
+    
 
   } catch (e) {
     return new Response("Error", { status: 500})

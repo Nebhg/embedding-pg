@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import { useState } from 'react'
 import { ChunkedRecipe } from '../types'
-const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -23,6 +23,7 @@ export default function Home() {
     if(!searchResponse.ok) {
       return;
     }
+    
     const results: ChunkedRecipe[] = await searchResponse.json();
     setChunks(results);
     console.log(results);
