@@ -12,6 +12,14 @@ export default function Home() {
   const [answer, setAnswer] = useState('');
   const [chunks, setChunks] = useState<Chunk[]>([]);
   const [loading, setLoading] = useState(false);
+  const [foodItemConfirmed, setFoodItemConfirmed] = useState(false);
+  const [predictedFood, setPredictedFood] = useState('');
+
+  const handleFoodItemConfirmation = () => {
+    setFoodItemConfirmed(true);
+    setQuery((prevQuery) => (prevQuery ? `${prevQuery} ${predictedFood}` : predictedFood));
+  };
+  
 
   const handleAnswer = async () => {
     setLoading(true);
@@ -35,7 +43,7 @@ export default function Home() {
     console.log(results);
 
     const prompt = endent`
-    Based on the embedded recipe data create a unique dish based on any food ingredients listed in the user query. Use sensible combinations of flavours. Format your response to include the total time it takes to cook, step by step instructions and nutritional information about the meal: "${query}"
+    How do I cook "${query}". Include the name of the recipe, the total time it takes to cook, step by step instructions on how it is cooked and  any nutritional information about the meal:"
     
     ${results.map((chunk: any) => chunk.content).join("\n\n")}`;
     console.log(prompt);
@@ -94,8 +102,17 @@ export default function Home() {
       <div className="flex justify-center items-center min-h-screen">
         <div className="flex flex-col w-[700px]">
           <div className='mb-4 '>
-            <ImageUploader />
+            <ImageUploader setPredictedFood={setPredictedFood} />
           </div>
+
+          {predictedFood && !foodItemConfirmed && (
+            <div>
+              <p>Predicted food item: {predictedFood}</p>
+              <button onClick={handleFoodItemConfirmation}>
+                Confirm
+              </button>
+            </div>
+          )}
           
           <input
             className="border border-gray-300 rounded-md p-2 mb-4"
