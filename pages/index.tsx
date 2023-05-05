@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { Chunk, ChunkedRecipe } from '../types'
 import endent from 'endent'
 import { Answer } from '@/components/Answer'
-
+import ImageUploader from '@/components/ImageUploader'
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -93,6 +93,10 @@ export default function Home() {
       </Head>
       <div className="flex justify-center items-center min-h-screen">
         <div className="flex flex-col w-[700px]">
+          <div className='mb-4 '>
+            <ImageUploader />
+          </div>
+          
           <input
             className="border border-gray-300 rounded-md p-2 mb-4"
             type="text"
