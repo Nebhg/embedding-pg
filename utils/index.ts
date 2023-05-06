@@ -1,7 +1,7 @@
 import {createClient} from "@supabase/supabase-js";
 import { ParsedEvent, ReconnectInterval, createParser } from "eventsource-parser";
 import { Stream } from "stream";
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 export const supabaseAdmin = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!

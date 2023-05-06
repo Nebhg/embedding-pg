@@ -6,6 +6,7 @@ import { Chunk, ChunkedRecipe } from '../types'
 import endent from 'endent'
 import { Answer } from '@/components/Answer'
 import ImageUploader from '@/components/ImageUploader'
+import Navbar from '@/components/Navbar'
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -99,20 +100,29 @@ export default function Home() {
           href='/favicon.ico'
         />
       </Head>
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="top-0 left-0 w-full z-10">
+        <Navbar />
+      </div>
+      <div className="flex justify-center items-center min-h-screen ">
+        
         <div className="flex flex-col w-[700px]">
-          <div className='mb-4 '>
-            <ImageUploader setPredictedFood={setPredictedFood} />
+          <div className="flex justify-center mb-4 pt-4">
+              <ImageUploader setPredictedFood={setPredictedFood} />
           </div>
 
           {predictedFood && !foodItemConfirmed && (
+          <div className='flex flex-col items-center'>
             <div>
               <p>Predicted food item: {predictedFood}</p>
-              <button onClick={handleFoodItemConfirmation}>
+            </div>
+            <div className='mt-2'>
+              <button onClick={handleFoodItemConfirmation} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
                 Confirm
               </button>
             </div>
-          )}
+          </div>
+        )}
+
           
           <input
             className="border border-gray-300 rounded-md p-2 mb-4"
@@ -128,7 +138,7 @@ export default function Home() {
             Generate
           </button>
 
-          <div className="mt-4">
+          <div className="mt-4 pb-8">
             {loading ? <div>Loading...</div> : 
             <Answer text={answer} />}
           </div>
