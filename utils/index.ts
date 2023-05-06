@@ -19,7 +19,7 @@ export const OpenAIStream = async (prompt: string) => {
             messages: [
             {
                 role: 'system',
-                content: 'You are a helpful assisstant that answers queries using embedded recipe data. Use the text provided as a guide on how recipes should be layed out, do not copy word for word. In your response include the name of the recipe, a list of ingredients, instructions on how to cook the dish and any nutritional information.'
+                content: 'You are a helpful assisstant that answers queries using embedded recipe data. Use the text provided as a guide on how recipes should be layed out, do not copy word for word and do not include images. In your response include the name of the recipe, a list of ingredients, instructions on how to cook the dish and any nutritional information.'
             },
             {
                 role: 'user',

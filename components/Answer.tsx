@@ -10,9 +10,10 @@ export const Answer: FC<Props> = ({ text }) => {
 
   useEffect(() => {
     const ingredients = text.match(/Ingredients:(.+?)Instructions:/s);
-    const instructions = text.match(/Instructions:(.+)/s);
+    const instructions = text.match(/Instructions:(.+?)Nutrition:/s);
+    const nutrition = text.match(/Nutrition:(.+)/s);
 
-    if (ingredients && instructions) {
+    if (ingredients && instructions && nutrition) {
       const ingredientsList = ingredients[1]
         .trim()
         .split(", ")
@@ -23,9 +24,15 @@ export const Answer: FC<Props> = ({ text }) => {
         .split(/(?<![0-9])\./)
         .filter((instruction: string) => instruction.trim() !== "");
 
+      const nutritionList = nutrition[1]
+        .trim()
+        .split(", ")
+        .filter((nutrient: string) => nutrient.trim() !== "");
+
       setSections([
         { title: "Ingredients", list: ingredientsList },
         { title: "Instructions", list: instructionsList },
+        { title: "Nutrition", list: nutritionList },
       ]);
     }
   }, [text]);

@@ -43,7 +43,7 @@ export default function Home() {
     console.log(results);
 
     const prompt = endent`
-    How do I cook "${query}". Include the name of the recipe, the total time it takes to cook, step by step instructions on how it is cooked and  any nutritional information about the meal:"
+    How do I cook "${query}". Please include the recipe name, the total time it takes to cook, step by step instructions on how it is cooked and  any nutritional information about the meal:"
     
     ${results.map((chunk: any) => chunk.content).join("\n\n")}`;
     console.log(prompt);
